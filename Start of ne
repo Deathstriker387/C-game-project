@@ -944,8 +944,9 @@ if(po>0){
     	 //colors handling 
     	 HANDLE y = GetStdHandle(STD_OUTPUT_HANDLE);
          SetConsoleTextAttribute(y, 4);
+        swordAnimation.addFrame("   /|   \n  / |   \n /  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |__|   \n   ||  \n   ||  \n   ||  \n   ||   \n   ||  \n   ||  \n  (__) ");
     	 swordAnimation.addFrame("|\\ \n| \\ \n|  \\ \n \\  \\ \n  \\  \\ \n   \\  \\ \n    \\  \\ \n     \\  \\ \n      \\  \\ \n       \\  \\ \n        \\  \\ \n         \\  \\ \n          \\__\\ \n            \\\\ \n             \\\\ \n              \\\\ \n               \\\\ \n                \\\\ \n                 \\\\ \n");
-    	 swordAnimation.addFrame("   /|   \n  / |   \n /  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |  |  \n |__|   \n   ||  \n   ||  \n   ||  \n   ||   \n   ||  \n   ||  \n  (__) ");
+
     	 swordAnimation.addFrame("  ___________________________\n /                           |__________________|\n/____________________________|------------------|\n");
     	 swordAnimation.play(500); // delay off how much it will play per frame
         //clearScreen();
