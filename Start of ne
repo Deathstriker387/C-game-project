@@ -12,7 +12,7 @@
      // Global variables
      int skip = 0, ret, exp, no, quest, ex, hp, mon, att = 1, plstr = 8, ophp, opend, opstr, opatt, sinp,
             oppo = 0, monid,bleed=0,
-            plend = 8, opstun = 0, stun, unspentskp = 8,damageMultiplier=0;
+            plend = 8, opstun = 0, stun, unspentskp = 8,damageMultiplier=0,po=0;
     string op;
     
     	queue <int> beh;
@@ -71,8 +71,42 @@ int dmg;
 		return dmg;
 	}
 	int kslash(){
-		
+		opstr=opstr*2;
+			int dmg= (int)(1 + (opstr * damageMultiplier * 1.2) - (plend * 0.1));
+		opstr=opstr/2;
+		return dmg;
 	//	return dmg;
+	}
+	int bash(){
+		opstr=opstr+3;
+			int dmg= (int)(1 + (opstr * damageMultiplier * 1.2) - (plend * 0.1));
+		
+		return dmg;
+	}
+	int kick(){
+		
+			int dmg= (int)(1 + (opstr * damageMultiplier * 1.2) - (plend * 0.05));
+		
+		return dmg;
+	}
+
+	int web(){
+		opend=8;
+			int dmg= (int)(1 + (opstr * damageMultiplier * 1.2) - (plend * 0.3));
+		
+		return dmg;
+	}
+	int skitter(){
+		opstr=opstr+3;
+			int dmg= (int)(1 + (opstr * damageMultiplier * 1.2) - (plend * 0.1));
+		
+		return dmg;
+	}
+	int sbite(){
+			int dmg= (int)(1 + (opstr * damageMultiplier * 1.2) - (plend * 0.1));
+			po=3;
+		return dmg;
+	
 	}
 
 		
@@ -150,10 +184,139 @@ int dmg;
 							beh.push(x);
 						break;
 						case 3:
+								x=kslash();
+								beh.push(x);
+							x=kick();
+							beh.push();
+							x=thr();
+								beh.push(x);
+								x=bash();
+							beh.push(x);
+									x=kick();
+							beh.push();
+							x=slash();
+								beh.push(x);
+									x=thr();
+								beh.push(x);
+									x=thr();
+								beh.push(x);
+									x=slash();
+								beh.push(x);
+									x=slash();
+								beh.push(x);
+									x=kslash();
+								beh.push(x);
+										x=kick();
+							beh.push();
+							
+							x=thr();
+								beh.push(x);
+								x=bash();
+							beh.push(x);
+							x=slash();
+								beh.push(x);
+									x=thr();
+								beh.push(x);
+									x=thr();
+								beh.push(x);
+									x=slash();
+								beh.push(x);
+									x=slash();
+								beh.push(x);
+									x=kslash();
+								beh.push(x);
+							
+							x=thr();
+								beh.push(x);
+								x=bash();
+							beh.push(x);
+							x=slash();
+								beh.push(x);
+									x=thr();
+								beh.push(x);
+									x=thr();
+								beh.push(x);
+									x=slash();
+								beh.push(x);
+									x=slash();
+								beh.push(x);
+						
 						break;
 						case 4:
+							x=bite();
+								beh.push(x);
+							x=slash();
+								beh.push(x);
+							x=kick();
+								beh.push(x);
+									x=bite();
+								beh.push(x);
+							x=slash();
+								beh.push(x);
+							x=kick();
+								beh.push(x);
+									x=bite();
+								beh.push(x);
+							x=slash();
+								beh.push(x);
+							x=kick();
+								beh.push(x);
+									x=bite();
+								beh.push(x);
+							x=slash();
+								beh.push(x);
+							x=kick();
+								beh.push(x);
+									x=bite();
+								beh.push(x);
+							x=slash();
+								beh.push(x);
+							x=kick();
+								beh.push(x);
+							
 						break;
 						case 5:
+							x=skitter();
+									beh.push(x);
+							x=sbite();
+									beh.push(x);
+							x=web();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+								x=skitter();
+									beh.push(x);
+							x=web();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+							x=sbite();
+									beh.push(x);
+							x=web();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+						
+							x=web();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+										x=web();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+										x=web();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
+										x=skitter();
+									beh.push(x);
 						break;
 						default:
 							break;
@@ -659,6 +822,7 @@ public:
                     }
                 } else if (ex == 1) {
                     hp = 1 + (plstr * 2) + (plend * 4);
+                    po=0;
                     cout<<"YOU HAVE BEEN HEALED AND CURED\nYOUR HEALTH IS NOW: " << hp<<endl;
                 } else if (ex == 4) {
                     sks.skull1();
@@ -751,6 +915,12 @@ if(bleed>0){
 	hp=hp-10;
 	cout<<"You bled for 10 HP"<<endl;
 	bleed--;
+}
+if(po>0){
+	hp=hp-5;
+	cout<<"POISON!"<<endl;
+	po--;
+	
 }
                 // Update player's health based on opponent's attack
                 hp = hp - opatt;
@@ -896,74 +1066,6 @@ if(bleed>0){
 
 };
 
-
-
-class behaviour : public Gam{
-	int thr() {
-		//random 30% chance to cause 1.5 damage
-        srand(time(0)); // Seed the random number generator
-        int knifethrust = 1; // Default damage multiplier
-        if (rand() % 100 < 30) { 
-            knifethrust = 1.5;   
-        }
-
-        opatt = static_cast<int>(1 + (opstr * knifethrust * 1.15) - (plend * 0.1));
-        return knifethrust;
-	}
- int slash() {
-        srand(time(0)); // Seed the random number generator
-
-        int damageMultiplier = 1; // Default damage multiplier
-        if (rand() % 100 < 5) { // 5% chance
-            damageMultiplier = 2; // Apply 2x damage
-        }
-        
-        opatt = static_cast<int>(1 + (opstr * damageMultiplier * 1.0) - (plend * 0.1));
-        return damageMultiplier;
-    }
-	int lacerate(){
-		//70% chance to hit and 50% chance to bleed along with 20% more damage than slash
-	}
-	int screech(){
-		//next attack does 2x damage
-	}
-	int headblow(){
-		//70%chanxce to hit 20% chance to stun 1.5x damage
-	}
-	public:
-		void passive(){
-			int x;
-			queue <int> pbeh;
-			bool full=true;
-			if(ophp!=1+(opstr*2)+(opend*4)){
-				full=false;
-			}
-			if(!full){
-				active();
-			}
-			else{
-				switch(monid){
-					case 1:
-						x=thr();
-						pbeh.push(x);
-						break;
-						case 2:
-						break ;
-						case 3:
-						break;
-						case 4:
-						break;
-						case 5:
-						break;
-						default;
-				}
-			}
-		}
-		void active(){
-	queue <int> abeh;
-			
-		}
-};
 int main() {
 	Gam g;
     Skshot sks;
